@@ -18,12 +18,15 @@ public class RedisConfig {
 
 	@Value("${spring.redis.host}")
 	private String host;
-	
+
 	@Value("${spring.redis.port}")
 	private int port;
-	
+
 	@Value("${spring.redis.password}")
 	private String password;
+
+	@Value("${spring.cache.redis.time-to-live}")
+	private long timeToLive;
 
 	@Bean
 	public LettuceConnectionFactory redisConnectionFactory() {
@@ -36,8 +39,8 @@ public class RedisConfig {
 
 	@Bean
 	public RedisCacheConfiguration cacheConfiguration() {
-		RedisCacheConfiguration cacheConfig = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(600))
-		    .disableCachingNullValues();
+		RedisCacheConfiguration cacheConfig = RedisCacheConfiguration.defaultCacheConfig()
+		    .entryTtl(Duration.ofMillis(timeToLive)).disableCachingNullValues();
 		return cacheConfig;
 	}
 

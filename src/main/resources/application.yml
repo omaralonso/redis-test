@@ -14,7 +14,7 @@ spring:
   cache:
     redis:
       cache-null-values: false
-      time-to-live: 600000
+      time-to-live: 60000
       use-key-prefix: true
     type: redis
     cache-names:    - alumnoCache
