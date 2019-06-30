@@ -9,11 +9,11 @@ phases:
   build:
     commands:
     - echo "Inicio de fase de build"
-    - mvn clean prepare-package war:exploded
+    - mvn package
   post_build:
     commands:
     - echo "Inicio de fase de post-build"
-    - mv target/deploy ./
 artifacts:
   files:
-    - deploy/**/*
+    - target/redis-test-0.0.1-SNAPSHOT.jar
+  discard-paths: yes
