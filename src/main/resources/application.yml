@@ -1,0 +1,3 @@
+redis:
+  endpoint: ${REDIS_ENDPOINT}
+  port: ${REDIS_PORT}

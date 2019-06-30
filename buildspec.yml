@@ -1,4 +1,8 @@
 version: 0.2
+env:
+  variables:
+    REDIS_ENDPOINT: "redis-test.vxhe6s.0001.use1.cache.amazonaws.com"
+    REDIS_PORT: "6379"
 phases:
   install:
     runtime-versions:

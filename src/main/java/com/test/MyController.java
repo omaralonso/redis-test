@@ -18,6 +18,12 @@ public class MyController {
 
 	private static Logger logger = LoggerFactory.getLogger(MyController.class);
 
+	private ApplicationProperties properties;
+
+	public MyController(ApplicationProperties properties) {
+		this.properties = properties;
+	}
+
 	@GetMapping(value = "/hola", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<String> saludar() {
 		logger.info("Inicio metodo saludar");
@@ -34,7 +40,8 @@ public class MyController {
 		String mensaje = "";
 
 		logger.info("Inicio conexion");
-		try (Jedis jedis = new Jedis("redis-test.vxhe6s.0001.use1.cache.amazonaws.com", 6379, 10000);) {
+		logger.info("REDIS - Endpoint: {} - Puerto: {}", properties.redisEndpoint, properties.redisPort);
+		try (Jedis jedis = new Jedis(properties.redisEndpoint, properties.redisPort, 10000);) {
 
 			long startTime = System.currentTimeMillis();
 			String valor = jedis.get(key);
