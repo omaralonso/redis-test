@@ -21,7 +21,7 @@ public class MyController {
 	@GetMapping(value = "/hola", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<String> saludar() {
 		logger.info("Inicio metodo saludar");
-		return new ResponseEntity<>("Holaaaa!", HttpStatus.OK);
+		return new ResponseEntity<>("Holaaaa Mundo (nuevo)!", HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/obtener/{key}", produces = "application/json;charset=UTF-8")
