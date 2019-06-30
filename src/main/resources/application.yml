@@ -1,3 +1,36 @@
-redis:
-  endpoint: ${REDIS_ENDPOINT}
-  port: ${REDIS_PORT}
+spring:
+  
+  #Redis Configuration
+  redis:
+    host: "redis-test.vxhe6s.0001.use1.cache.amazonaws.com"
+    port: 6379
+    password: ""
+    lettuce:
+      pool:
+        max-active: 7
+        max-idle: 7
+        min-idle: 2
+        max-wait: 2000ms
+  cache:
+    redis:
+      cache-null-values: false
+      time-to-live: 600000
+      use-key-prefix: true
+    type: redis
+    cache-names:    - alumnoCache
+    - allAlumnosCache
+    
+  #MySQL Configuration
+  datasource:
+    url: jdbc:mysql://dev.cpsrxadhzier.us-east-1.rds.amazonaws.com:3306/dev
+    username: admin
+    password: admin1234
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 5
+  jpa:
+    properties:      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        id:
+          new_generator_mappings: false
+        format_sql: true
