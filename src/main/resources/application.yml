@@ -2,7 +2,7 @@ spring:
   
   #Redis Configuration
   redis:
-    host: "redis-test.vxhe6s.0001.use1.cache.amazonaws.com"
+    host: "redis-test.vxhe6s.ng.0001.use1.cache.amazonaws.com"
     port: 6379
     password: ""
     lettuce:
@@ -17,7 +17,8 @@ spring:
       time-to-live: 60000
       use-key-prefix: true
     type: redis
-    cache-names:    - alumnoCache
+    cache-names:
+    - alumnoCache
     - allAlumnosCache
     
   #MySQL Configuration
@@ -29,7 +30,8 @@ spring:
       connection-timeout: 20000
       minimum-idle: 5
   jpa:
-    properties:      hibernate:
+    properties:
+      hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         id:
           new_generator_mappings: false
