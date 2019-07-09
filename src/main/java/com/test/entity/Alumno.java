@@ -50,4 +50,9 @@ public class Alumno implements Serializable {
 		this.apellido = apellido;
 	}
 
+	@Override
+	public String toString() {
+		return "Alumno [alumnoId=" + alumnoId + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+	}
+
 }

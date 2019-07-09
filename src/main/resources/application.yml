@@ -5,12 +5,13 @@ spring:
     host: "redis-test.vxhe6s.ng.0001.use1.cache.amazonaws.com"
     port: 6379
     password: ""
+    timeout: 100
     lettuce:
       pool:
         max-active: 7
         max-idle: 7
         min-idle: 2
-        max-wait: 2000ms
+        max-wait: 500ms
   cache:
     redis:
       cache-null-values: false
