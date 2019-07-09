@@ -1,0 +1,66 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "f7797828-6197-4d56-9e89-a0fbcd200f56": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 496.0078125,
+                    "y": 167.03125
+                },
+                "z": 0
+            }
+        }
+    },
+    "Resources": {
+        "RedisTestOmar": {
+            "Type": "AWS::ElastiCache::ReplicationGroup",
+            "Properties": {
+				"ReplicationGroupId": "redis-test",
+				"ReplicationGroupDescription": "RedisTest",
+				"AutomaticFailoverEnabled": "False",
+				"AutoMinorVersionUpgrade": "true",
+                "CacheNodeType": "cache.t2.micro",
+                "Engine": "redis",
+                "EngineVersion": "5.0.4",
+                "NumCacheClusters": "1",
+				"AtRestEncryptionEnabled": "false",
+				"TransitEncryptionEnabled": "false",
+				"SnapshotRetentionLimit": "1"
+				},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "f7797828-6197-4d56-9e89-a0fbcd200f56"
+                }
+            }
+        }
+    },
+	"Outputs":{
+		"PrimaryEndpoint": {
+			"Description": "Endpoint of the Primary node",
+			"Value": {
+				"Fn::Join": [
+					"",
+					[
+						{
+							"Fn::GetAtt": [
+								"RedisTestOmar",
+								"PrimaryEndPoint.Address"
+							]
+						},
+						":",
+						{
+							"Fn::GetAtt": [
+								"RedisTestOmar",	
+								"PrimaryEndPoint.Port"
+							]
+						}
+					]
+				]
+			}
+		}
+	}
+}
