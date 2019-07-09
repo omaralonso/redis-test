@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.test.aspect.LogExecutionTime;
 import com.test.entity.Alumno;
 import com.test.service.IAlumnoService;
 
@@ -26,6 +27,7 @@ public class AlumnoController {
 	@Autowired
 	private IAlumnoService alumnoService;
 
+	@LogExecutionTime
 	@GetMapping(value = "/hola", produces = "application/json;charset=UTF-8")
 	public ResponseEntity<String> saludar() {
 		return new ResponseEntity<>("Holaaaa Mundo (nuevo)!", HttpStatus.OK);
