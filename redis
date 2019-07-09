@@ -37,6 +37,21 @@
                 }
             }
         },
+        "SGRedsmin":{
+            "Type":"AWS::EC2::SecurityGroup",
+            "Properties":{
+                "GroupDescription":"SG for redsmin",
+                "GroupName":"ec2-redsmin-sg",
+                "SecurityGroupIngress":[
+                    {
+                        "IpProtocol":"tcp",
+                        "FromPort":8080,
+                        "ToPort":8080,
+                        "CidrIp":"0.0.0.0/0"
+                    }
+                ]
+            }
+        },
         "SGRedis":{
             "Type":"AWS::EC2::SecurityGroup",
             "Properties":{
@@ -57,6 +72,18 @@
                     }
                 ]
             }
+        },
+        "RedsminInstance":{
+            "Type":"AWS::EC2::Instance",
+            "Properties":{
+                "InstanceType":"t2.micro",
+                "SecurityGroups":[
+                    {
+                        "Ref":"SGRedsmin"
+                    }
+                ]
+            },
+            "DependsOn":"SGRedsmin"
         }
     },
     "Outputs":{
